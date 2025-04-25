@@ -12,7 +12,8 @@ export async function middleware(request: NextRequest) {
     (url.pathname.startsWith("/dashboard") ||
       url.pathname.startsWith("/create-startup") ||
       url.pathname.startsWith("/create-investor") ||
-      url.pathname.startsWith("/investors"))
+      url.pathname.startsWith("/investors") ||
+      url.pathname.startsWith("/startups"))
   ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

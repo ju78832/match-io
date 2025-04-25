@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { error } from "console";
 
 export async function POST(req: Request) {
   try {
@@ -57,7 +58,11 @@ export async function GET(req: Request) {
           userId: user._id?.toString(),
         },
       });
-      if (!startup) throw new Error("Startup profile not found");
+      if (!startup)
+        return NextResponse.json(
+          { error: "Startup profile not found" },
+          { status: 403 }
+        );
 
       matches = await prisma.match.findMany({
         where: { startupId: startup.id },
@@ -78,7 +83,11 @@ export async function GET(req: Request) {
       const investor = await prisma.investor.findUnique({
         where: { userId: user._id?.toString() },
       });
-      if (!investor) throw new Error("Investor profile not found");
+      if (!investor)
+        return NextResponse.json(
+          { error: "Investor profile not found" },
+          { status: 403 }
+        );
 
       matches = await prisma.match.findMany({
         where: { investorId: investor.id },
@@ -96,7 +105,7 @@ export async function GET(req: Request) {
         },
       });
     } else {
-      throw new Error("Invalid type parameter");
+      return NextResponse.json({ error: "Invalid type" }, { status: 400 });
     }
 
     return NextResponse.json(matches);
