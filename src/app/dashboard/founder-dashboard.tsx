@@ -2,13 +2,23 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Startup } from "@/generated/prisma";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function FounderDashboard() {
   const { data: session } = useSession();
-  const [startup, setStartup] = useState(null);
+  const [startup, setStartup] = useState<Startup | null>(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +30,7 @@ export default function FounderDashboard() {
         if (startupRes.ok) {
           const startups = await startupRes.json();
           const userStartup = startups.find(
-            (s: any) => s.userId === session?.user.id
+            (s: any) => s.userId === session?.user._id
           );
           setStartup(userStartup);
         }
@@ -57,15 +67,52 @@ export default function FounderDashboard() {
         <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
           Founder Dashboard
         </h1>
-        {!startup ? (
-          <Button asChild>
-            <Link href="/create-startup">Create Startup Profile</Link>
+        <div className="flex items-center gap-4">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline">Founder Actions</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Founder Tools</DialogTitle>
+                <DialogDescription>
+                  Manage your startup and connections
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                {startup ? (
+                  <>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href={`/startups/${startup.id}/edit`}>
+                        Edit Startup Profile
+                      </Link>
+                    </Button>
+                    <Button variant="outline" className="w-full">
+                      View Investor Matches
+                    </Button>
+                    <Button variant="outline" className="w-full">
+                      Request Introduction
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    asChild
+                    className="w-full bg-purple-600 hover:bg-purple-700"
+                  >
+                    <Link href="/create-startup">Create Startup Profile</Link>
+                  </Button>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
+          <Button
+            variant="ghost"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="text-purple-600 hover:bg-purple-100 dark:hover:bg-purple-900/50"
+          >
+            Logout
           </Button>
-        ) : (
-          <Button asChild variant="outline">
-            <Link href={`/startups/${startup.id}`}>View Profile</Link>
-          </Button>
-        )}
+        </div>
       </div>
 
       {!startup ? (
@@ -77,7 +124,7 @@ export default function FounderDashboard() {
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               Create your startup profile to start matching with investors.
             </p>
-            <Button asChild>
+            <Button asChild className="bg-purple-600 hover:bg-purple-700">
               <Link href="/create-startup">Get Started</Link>
             </Button>
           </CardContent>
@@ -108,20 +155,36 @@ export default function FounderDashboard() {
                             {match.matchScore.toFixed(1)}%
                           </span>
                         </p>
-                        <Button
-                          asChild
-                          variant="outline"
-                          className="w-full mt-2"
-                        >
-                          <Link href={`/investors/${match.investor.id}`}>
-                            View Investor
-                          </Link>
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button asChild variant="outline" className="w-full">
+                            <Link href={`/investors/${match.investor.id}`}>
+                              View Profile
+                            </Link>
+                          </Button>
+                          <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                            Connect
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
                 </div>
               )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
+              <Button asChild className="bg-purple-600 hover:bg-purple-700">
+                <Link href={`/startups/${startup.id}/edit`}>
+                  Update Profile
+                </Link>
+              </Button>
+              <Button variant="outline">Find More Investors</Button>
+              <Button variant="outline">View Analytics</Button>
             </CardContent>
           </Card>
         </div>

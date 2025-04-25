@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Investor } from "@/generated/prisma";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function InvestorDashboard() {
   const { data: session } = useSession();
-  const [investor, setInvestor] = useState(null);
+  const [investor, setInvestor] = useState<Investor | null>(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +21,7 @@ export default function InvestorDashboard() {
         if (investorRes.ok) {
           const investors = await investorRes.json();
           const userInvestor = investors.find(
-            (i: any) => i.userId === session?.user.id
+            (i: any) => i.userId === session?.user._id
           );
           setInvestor(userInvestor);
         }
@@ -63,7 +64,7 @@ export default function InvestorDashboard() {
           </Button>
         ) : (
           <Button asChild variant="outline">
-            <Link href={`/investors/${investor.id}`}>View Profile</Link>
+            <Link href={`/investors/${investor?.id}`}>View Profile</Link>
           </Button>
         )}
       </div>
