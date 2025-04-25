@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -45,88 +45,133 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-900/10 to-black/5">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg dark:bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500/10 via-blue-300/5 to-white px-4 py-8">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-2xl border border-blue-100 dark:border-blue-900 dark:bg-gray-900">
         <div className="text-center">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
             Create Account
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-gray-700 dark:text-gray-300">
             Join AngelMatch as a founder or investor
           </p>
         </div>
 
         {error && (
-          <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-900 dark:text-red-100">
+          <div className="p-4 text-sm text-red-700 bg-red-50 rounded-lg dark:bg-red-900/20 dark:text-red-100 border-l-4 border-red-500 flex items-center">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-5 w-5 mr-2" 
+              viewBox="0 0 20 20" 
+              fill="currentColor"
+            >
+              <path 
+                fillRule="evenodd" 
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" 
+                clipRule="evenodd" 
+              />
+            </svg>
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="name">Full Name</Label>
+          <div className="space-y-5">
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-sm font-medium text-gray-800 dark:text-gray-200">Full Name</Label>
               <Input
                 id="name"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="John Doe"
               />
             </div>
-            <div>
-              <Label htmlFor="email">Email</Label>
+            
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-medium text-gray-800 dark:text-gray-200">Email</Label>
               <Input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="you@example.com"
               />
             </div>
-            <div>
-              <Label htmlFor="password">Password</Label>
+            
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                placeholder="••••••••"
               />
             </div>
-            <div>
-              <Label>I am a...</Label>
-              <RadioGroup
-                defaultValue="FOUNDER"
-                className="flex gap-4 pt-2"
-                onValueChange={(value) => setRole(value)}
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="FOUNDER" id="founder" />
-                  <Label htmlFor="founder">Founder</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="INVESTOR" id="investor" />
-                  <Label htmlFor="investor">Investor</Label>
-                </div>
-              </RadioGroup>
+            
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-gray-800 dark:text-gray-200">I am a...</Label>
+              <div className="grid grid-cols-2 gap-4 mt-2">
+                <button
+                  type="button"
+                  onClick={() => setRole("FOUNDER")}
+                  className={`py-2 px-4 rounded-lg text-center transition-all ${
+                    role === "FOUNDER"
+                      ? "bg-blue-500 text-white shadow-md" 
+                      : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                  }`}
+                >
+                  Founder
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setRole("INVESTOR")}
+                  className={`py-2 px-4 rounded-lg text-center transition-all ${
+                    role === "INVESTOR" 
+                      ? "bg-blue-500 text-white shadow-md" 
+                      : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                  }`}
+                >
+                  Investor
+                </button>
+              </div>
             </div>
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700"
+            className={`w-full py-3 mt-6 font-medium text-white bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all ${
+              isLoading ? "opacity-80 cursor-not-allowed" : ""
+            }`}
             disabled={isLoading}
           >
-            {isLoading ? "Creating account..." : "Create Account"}
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Creating account...
+              </div>
+            ) : (
+              "Create Account"
+            )}
           </Button>
         </form>
 
-        <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-6 text-center text-sm text-gray-700 dark:text-gray-300">
           Already have an account?{" "}
           <Link
             href="/login"
-            className="font-medium text-purple-600 hover:text-purple-500 dark:text-purple-400 dark:hover:text-purple-300"
+            className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
           >
             Sign in
           </Link>

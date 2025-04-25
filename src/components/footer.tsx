@@ -179,7 +179,7 @@ export function Footer() {
         </div>
         
         {/* Legal Links Row */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-6">
+        <div className="flex flex-col md:flex-row justify-around items-center pt-6">
           <div className="text-sm text-gray-400 mb-4 md:mb-0">
             © 2023 AngelMatch. All rights reserved.
           </div>
