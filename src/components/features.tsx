@@ -30,27 +30,34 @@ const features = [
 
 export function Features() {
   return (
-    <section className="py-16 bg-[#111827] text-white">
-      <div className="container px-4 md:px-6">
+    <section className="py-16 bg-white dark:bg-[#111827] text-[#111827] dark:text-white">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-3xl text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             Why Founders Love <span className="text-blue-500">AngelMatch</span>
           </h2>
-          <p className="mt-4 text-gray-400 text-lg">
+          <p className="mt-4 text-gray-600 dark:text-gray-400 text-lg">
             We've built the most efficient way to connect with angel investors
             who are a perfect fit for your startup.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {features.map((feature, index) => (
-            <Card key={index} className="bg-[#1F2937] border border-gray-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-              <CardHeader className="pb-2">
-                <div className="mb-3">{feature.icon}</div>
-                <CardTitle className="text-xl font-semibold text-white">{feature.title}</CardTitle>
+            <Card 
+              key={index} 
+              className="bg-white dark:bg-[#1F2937] border border-gray-100 dark:border-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <CardHeader className="pb-2 space-y-4">
+                <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-900/20">
+                  {feature.icon}
+                </div>
+                <CardTitle className="text-xl font-semibold text-[#111827] dark:text-white">
+                  {feature.title}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400">
+                <p className="text-gray-600 dark:text-gray-400">
                   {feature.description}
                 </p>
               </CardContent>
