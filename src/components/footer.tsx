@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto py-16 px-4 md:px-6">
         {/* Logo and Newsletter Section */}
-        <div className="flex flex-col md:flex-row justify-around gap-10 items-start mb-12 pb-8 border-b border-gray-700">
+        <div className="flex flex-col md:flex-row justify-around  items-start mb-12 pb-8  border-b border-gray-700">
           <div className="mb-8 md:mb-0 max-w-md">
             <div className="flex items-center mb-4">
               <svg className="h-8 w-8 text-blue-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
