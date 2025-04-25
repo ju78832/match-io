@@ -1,5 +1,7 @@
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import Image from 'next/image';
+import heroImg from '../assets/image.png'
 
 export function Hero() {
   return (
@@ -28,11 +30,20 @@ export function Hero() {
           </div>
         </div>
         <div className="flex justify-center">
-          <Card className="w-full max-w-md overflow-hidden rounded-xl border border-gray-700 bg-gradient-to-br from-purple-900/20 to-black/50 p-1">
+        <Image 
+              src={heroImg}
+              alt="hero img " 
+              className=" w-full "
+            />
+          {/* <Card className="w-full max-w-md overflow-hidden rounded-xl border border-gray-700 bg-gradient-to-br from-purple-900/20 to-black/50 p-1">
             <div className="h-80 w-full rounded-lg bg-gradient-to-br from-purple-900/10 to-black/30 flex items-center justify-center">
-              <span className="text-gray-400">Platform Preview</span>
+            <Image 
+              src={heroImg}
+              alt="Investor search interface" 
+              className="rounded-lg shadow-xl w-full "
+            />
             </div>
-          </Card>
+          </Card> */}
         </div>
       </div>
     </section>
