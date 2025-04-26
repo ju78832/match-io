@@ -27,12 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} `} >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} `}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <main className="min-h-screen m-10">{children}</main>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
         </Providers>
       </body>
     </html>
