@@ -60,6 +60,175 @@ export function Navbar() {
           >
             How It Works
           </Link>
+
+          {/* Resources Dropdown - Simplified two-column layout */}
+          <div className="relative group">
+            <button
+              className="hover:text-blue-400 transition-colors flex items-center"
+              onClick={() => setIsResourcesOpen(!isResourcesOpen)}
+            >
+              Resources
+              <ChevronDown
+                className={`ml-1 h-4 w-4 transition-transform ${
+                  isResourcesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {isResourcesOpen && (
+              <div className="absolute left-0 mt-2 w-[400px] bg-[#1F2937] rounded-md shadow-lg py-1 z-50">
+                <div className="grid grid-cols-2 gap-4 p-4">
+                  {/* Left Column */}
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-semibold text-blue-400">
+                      Resources
+                    </h3>
+                    <ul className="space-y-2 text-sm">
+                      <li>
+                        <Link
+                          href="/resources/accelerator-hunt"
+                          className="hover:text-blue-400"
+                        >
+                          Accelerator Hunt
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/pitch-deck-database"
+                          className="hover:text-blue-400"
+                        >
+                          Pitch Deck Database
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/investor-database"
+                          className="hover:text-blue-400"
+                        >
+                          Join Investor Database
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/vc-search"
+                          className="hover:text-blue-400"
+                        >
+                          VC Search
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/fundraising-templates"
+                          className="hover:text-blue-400"
+                        >
+                          Fundraising Templates
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/publication"
+                          className="hover:text-blue-400"
+                        >
+                          Publication
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Right Column */}
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-semibold text-blue-400">
+                      Pricing
+                    </h3>
+                    <ul className="space-y-2 text-sm">
+                      <li>
+                        <Link
+                          href="/resources/pitch-perfect"
+                          className="hover:text-blue-400"
+                        >
+                          Pitch Perfect
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/calculators"
+                          className="hover:text-blue-400"
+                        >
+                          Calculators
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/ai-email-generator"
+                          className="hover:text-blue-400"
+                        >
+                          AI Email Generator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/elevator-pitch-generator"
+                          className="hover:text-blue-400"
+                        >
+                          Elevator Pitch Generator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/fundraising-glossary"
+                          className="hover:text-blue-400"
+                        >
+                          Fundraising Glossary
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/email-templates"
+                          className="hover:text-blue-400"
+                        >
+                          Email Templates
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Bottom Section */}
+                <div className="border-t border-gray-700 p-4">
+                  <h3 className="text-sm font-semibold text-blue-400 mb-2">
+                    Calculators
+                  </h3>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <Link
+                      href="/resources/valuation-calculator"
+                      className="hover:text-blue-400"
+                    >
+                      Valuation Calculator
+                    </Link>
+                    <Link
+                      href="/resources/burn-rate-calculator"
+                      className="hover:text-blue-400"
+                    >
+                      Burn Rate Calculator
+                    </Link>
+                    <Link
+                      href="/resources/runway-calculator"
+                      className="hover:text-blue-400"
+                    >
+                      Runway Calculator
+                    </Link>
+                    <Link
+                      href="/resources/roi-calculator"
+                      className="hover:text-blue-400"
+                    >
+                      Investor ROI Calculator
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
           <div className="flex items-center space-x-3 ml-4">
             <Link
               href="/login"
@@ -111,6 +280,176 @@ export function Navbar() {
             >
               How It Works
             </Link>
+
+            {/* Mobile Resources Dropdown */}
+            <div>
+              <button
+                className="flex items-center hover:text-blue-400 transition-colors"
+                onClick={() => setIsResourcesOpen(!isResourcesOpen)}
+              >
+                Resources
+                <ChevronDown
+                  className={`ml-1 h-4 w-4 transition-transform ${
+                    isResourcesOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {isResourcesOpen && (
+                <div className="mt-2 ml-4 space-y-4">
+                  <div>
+                    <h3 className="text-sm font-semibold mt-2 mb-1 text-blue-400">
+                      Resources
+                    </h3>
+                    <ul className="space-y-2 text-sm ml-2">
+                      <li>
+                        <Link
+                          href="/resources/accelerator-hunt"
+                          className="hover:text-blue-400"
+                        >
+                          Accelerator Hunt
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/pitch-deck-database"
+                          className="hover:text-blue-400"
+                        >
+                          Pitch Deck Database
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/investor-database"
+                          className="hover:text-blue-400"
+                        >
+                          Investor Database
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/vc-search"
+                          className="hover:text-blue-400"
+                        >
+                          VC Search
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/fundraising-templates"
+                          className="hover:text-blue-400"
+                        >
+                          Fundraising Templates
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/publication"
+                          className="hover:text-blue-400"
+                        >
+                          Publication
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold mt-2 mb-1 text-blue-400">
+                      Pricing
+                    </h3>
+                    <ul className="space-y-2 text-sm ml-2">
+                      <li>
+                        <Link
+                          href="/resources/pitch-perfect"
+                          className="hover:text-blue-400"
+                        >
+                          Pitch Perfect
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/calculators"
+                          className="hover:text-blue-400"
+                        >
+                          Calculators
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/ai-email-generator"
+                          className="hover:text-blue-400"
+                        >
+                          AI Email Generator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/elevator-pitch-generator"
+                          className="hover:text-blue-400"
+                        >
+                          Elevator Pitch Generator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/fundraising-glossary"
+                          className="hover:text-blue-400"
+                        >
+                          Fundraising Glossary
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/email-templates"
+                          className="hover:text-blue-400"
+                        >
+                          Email Templates
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold mt-2 mb-1 text-blue-400">
+                      Calculators
+                    </h3>
+                    <ul className="space-y-2 text-sm ml-2">
+                      <li>
+                        <Link
+                          href="/resources/valuation-calculator"
+                          className="hover:text-blue-400"
+                        >
+                          Valuation Calculator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/burn-rate-calculator"
+                          className="hover:text-blue-400"
+                        >
+                          Burn Rate Calculator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/runway-calculator"
+                          className="hover:text-blue-400"
+                        >
+                          Runway Calculator
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/resources/roi-calculator"
+                          className="hover:text-blue-400"
+                        >
+                          Investor ROI Calculator
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="grid grid-cols-2 gap-2 pt-2">
               <Link
                 href="/login"
