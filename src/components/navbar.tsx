@@ -20,7 +20,9 @@ export function Navbar() {
               <span className="ml-2 font-bold text-xl text-white">AngelMatch</span>
             </div>
           </Link>
-        </div>
+
+
+        
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">

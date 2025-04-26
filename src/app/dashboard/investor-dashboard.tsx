@@ -5,10 +5,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function InvestorDashboard() {
   const { data: session } = useSession();
-  const [investor, setInvestor] = useState(null);
+  const [investor, setInvestor] = useState<any>(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +29,7 @@ export default function InvestorDashboard() {
         if (investorRes.ok) {
           const investors = await investorRes.json();
           const userInvestor = investors.find(
-            (i: any) => i.userId === session?.user.id
+            (i: any) => i.userId === session?.user._id
           );
           setInvestor(userInvestor);
         }
@@ -80,7 +89,10 @@ export default function InvestorDashboard() {
               </p>
               <Button asChild className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-3 rounded-lg shadow-md transition-all">
                 <Link href="/create-investor">Get Started</Link>
+
               </Button>
+              <Button variant="outline">Find More Startups</Button>
+              <Button variant="outline">View Analytics</Button>
             </CardContent>
           </Card>
         ) : (

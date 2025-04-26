@@ -2,13 +2,23 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Startup } from "@/generated/prisma";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function FounderDashboard() {
   const { data: session } = useSession();
-  const [startup, setStartup] = useState(null);
+  const [startup, setStartup] = useState<Startup | null>(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +30,7 @@ export default function FounderDashboard() {
         if (startupRes.ok) {
           const startups = await startupRes.json();
           const userStartup = startups.find(
-            (s: any) => s.userId === session?.user.id
+            (s: any) => s.userId === session?.user._id
           );
           setStartup(userStartup);
         }
@@ -52,6 +62,7 @@ export default function FounderDashboard() {
   }
 
   return (
+
     <div className="bg-gray-50 min-h-screen">
       <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
         {/* Dashboard Header */}
@@ -72,6 +83,8 @@ export default function FounderDashboard() {
               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg shadow-sm transition-colors"
             >
               <Link href="/create-startup">Create Startup Profile</Link>
+
+    
             </Button>
           ) : (
             <Button 
@@ -92,11 +105,13 @@ export default function FounderDashboard() {
               <CardTitle className="text-xl font-bold text-gray-800">Complete Your Startup Profile</CardTitle>
             </CardHeader>
             <CardContent>
+
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <div className="flex items-center justify-center bg-blue-50 h-16 w-16 rounded-xl">
                   <svg className="h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
+
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-600 mb-4">
@@ -112,6 +127,7 @@ export default function FounderDashboard() {
               </div>
             </CardContent>
           </Card>
+
         ) : (
           <div className="grid gap-6">
             <Card className="rounded-xl overflow-hidden shadow-md border-0">
@@ -228,6 +244,7 @@ export default function FounderDashboard() {
           </div>
         )}
       </div>
+
     </div>
   );
 }
