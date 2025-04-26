@@ -17,8 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { createUser } from "@/lib/data/user";
-import bcrypt from "bcryptjs";
+
 import { signIn } from "next-auth/react";
 
 export default function SignupPage() {
