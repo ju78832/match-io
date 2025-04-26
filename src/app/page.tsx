@@ -3,7 +3,9 @@ import { Hero } from "@/components/hero";
 import { Features } from "@/components/features";
 import { Testimonials } from "@/components/testimonials";
 import { CTA } from "@/components/cta";
-import FindInvestor from "@/components/findInvestor";
+
+import FindInvestor  from "@/components/findInvestor";
+
 import { Footer } from "@/components/footer";
 
 export default function Home() {
