@@ -2,9 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { signIn } from "next-auth/react";
 
 export default function SignupPage() {
@@ -65,22 +62,22 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500/10 via-blue-300/5 to-white px-4 py-8">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-2xl border border-blue-100 dark:border-blue-900 dark:bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-[#111827] bg-gradient-to-br from-[#111827] via-[#1e293b] to-[#111827] px-4 py-8">
+      <div className="w-full max-w-md p-6 md:p-8 space-y-6 bg-white rounded-xl shadow-lg border border-blue-100 transition-all">
         <div className="text-center">
-          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
             Create Account
           </h1>
-          <p className="mt-3 text-gray-700 dark:text-gray-300">
+          <p className="mt-2 text-gray-600">
             Join AngelMatch as a founder or investor
           </p>
         </div>
 
         {error && (
-          <div className="p-4 text-sm text-red-700 bg-red-50 rounded-lg dark:bg-red-900/20 dark:text-red-100 border-l-4 border-red-500 flex items-center">
+          <div className="p-3 text-sm text-red-700 bg-red-50 rounded-lg border-l-4 border-red-500 flex items-center">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5 mr-2" 
+              className="h-5 w-5 mr-2 flex-shrink-0" 
               viewBox="0 0 20 20" 
               fill="currentColor"
             >
@@ -94,19 +91,22 @@ export default function SignupPage() {
           </div>
         )}
 
-
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel className="text-gray-700">Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input 
+                      placeholder="John Doe" 
+                      className="bg-gray-50 border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                      {...field} 
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -115,15 +115,16 @@ export default function SignupPage() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-gray-700">Email</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
                       placeholder="email@example.com"
+                      className="bg-gray-50 border-gray-200 focus:ring-blue-500 focus:border-blue-500"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -132,11 +133,16 @@ export default function SignupPage() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-gray-700">Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="••••••••" {...field} />
+                    <Input 
+                      type="password" 
+                      placeholder="••••••••" 
+                      className="bg-gray-50 border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                      {...field} 
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -145,49 +151,56 @@ export default function SignupPage() {
               name="role"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel>I am a...</FormLabel>
+                  <FormLabel className="text-gray-700">I am a...</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                       className="flex gap-4"
                     >
-                      <FormItem className="flex items-center space-x-2">
+                      <FormItem className="flex items-center space-x-2 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="FOUNDER" />
+                          <RadioGroupItem value="FOUNDER" className="text-blue-500 border-gray-300 focus:ring-blue-500" />
                         </FormControl>
-                        <FormLabel className="font-normal">Founder</FormLabel>
+                        <FormLabel className="font-normal text-gray-700">Founder</FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-2">
+                      <FormItem className="flex items-center space-x-2 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="INVESTOR" />
+                          <RadioGroupItem value="INVESTOR" className="text-blue-500 border-gray-300 focus:ring-blue-500" />
                         </FormControl>
-                        <FormLabel className="font-normal">Investor</FormLabel>
+                        <FormLabel className="font-normal text-gray-700">Investor</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
             <Button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white transition-colors py-2 h-11 mt-2"
               disabled={form.formState.isSubmitting}
             >
-              {form.formState.isSubmitting
-                ? "Creating account..."
-                : "Create Account"}
+              {form.formState.isSubmitting ? (
+                <div className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Creating account...
+                </div>
+              ) : (
+                "Create Account"
+              )}
             </Button>
           </form>
         </Form>
 
-
-        <div className="mt-6 text-center text-sm text-gray-700 dark:text-gray-300">
+        <div className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{" "}
           <Link
             href="/login"
-            className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+            className="font-medium text-blue-500 hover:text-blue-600 transition-colors"
           >
             Sign in
           </Link>

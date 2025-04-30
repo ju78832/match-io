@@ -62,7 +62,7 @@ export default function StartupsPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
@@ -70,9 +70,9 @@ export default function StartupsPage() {
   const industries = Array.from(new Set(startups.map((s) => s.industry)));
 
   return (
-    <div className="container py-8">
+    <div className="container py-8 bg-white mx-auto px-2 md:px-8 lg:px-16">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold text-blue-500">
           Startup Directory
         </h1>
 
@@ -81,12 +81,12 @@ export default function StartupsPage() {
             placeholder="Search startups..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full md:w-64"
+            className="w-full md:w-64 border-blue-500 focus:ring-blue-500"
           />
           <select
             value={industryFilter}
             onChange={(e) => setIndustryFilter(e.target.value)}
-            className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 border-blue-500"
           >
             <option value="">All Industries</option>
             {industries.map((industry) => (
@@ -99,12 +99,12 @@ export default function StartupsPage() {
       </div>
 
       {filteredStartups.length === 0 ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>No Startups Found</CardTitle>
+        <Card className="border border-blue-500 shadow-md">
+          <CardHeader >
+            <CardTitle className="text-blue-500">No Startups Found</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600">
               {searchTerm || industryFilter
                 ? "Try adjusting your search criteria"
                 : "No startups are currently registered"}
@@ -112,32 +112,32 @@ export default function StartupsPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {filteredStartups.map((startup) => (
             <Card
               key={startup.id}
-              className="hover:shadow-lg transition-shadow"
+              className="hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden"
             >
-              <CardHeader>
-                <CardTitle>{startup.name}</CardTitle>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+              <CardHeader className="border-b border-gray-200">
+                <CardTitle className="text-black">{startup.name}</CardTitle>
+                <div className="flex flex-wrap items-center gap-2 mt-2">
+                  <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-500">
                     {startup.industry}
                   </span>
-                  <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                  <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">
                     {startup.stage}
                   </span>
                 </div>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400 line-clamp-3 mb-4">
+              <CardContent className="p-4">
+                <p className="text-gray-600 line-clamp-3 mb-4 h-16">
                   {startup.description}
                 </p>
-                <div className="flex justify-between items-center">
-                  <p className="font-medium">
+                <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                  <p className="font-medium text-black">
                     ${startup.fundingGoal.toLocaleString()} Goal
                   </p>
-                  <Button asChild variant="outline">
+                  <Button asChild variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-50">
                     <Link href={`/startups/${startup.id}`}>View Details</Link>
                   </Button>
                 </div>
@@ -149,7 +149,7 @@ export default function StartupsPage() {
 
       {session?.user.role === "FOUNDER" && (
         <div className="mt-8 flex justify-center">
-          <Button asChild className="bg-purple-600 hover:bg-purple-700">
+          <Button asChild className="bg-blue-500 hover:bg-blue-600 text-white">
             <Link href="/create-startup">Add Your Startup</Link>
           </Button>
         </div>
