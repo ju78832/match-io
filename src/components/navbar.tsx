@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, User, X } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#111827] text-white">
@@ -228,21 +230,39 @@ export function Navbar() {
               </div>
             )}
           </div>
+          {!session && (
+            <div className="flex items-center space-x-3 ml-4">
+              <Link
+                href="/login"
+                className="px-5 py-1.5 border border-gray-600 rounded-md hover:bg-gray-800 transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                href="/signup"
+                className="px-5 py-1.5 border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                Sign up
+              </Link>
+            </div>
+          )}
 
-          <div className="flex items-center space-x-3 ml-4">
-            <Link
-              href="/login"
-              className="px-5 py-1.5 border border-gray-600 rounded-md hover:bg-gray-800 transition-colors"
-            >
-              Login
-            </Link>
-            <Link
-              href="/signup"
-              className="px-5 py-1.5 border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
-            >
-              Sign up
-            </Link>
-          </div>
+          {session && (
+            <div className="flex items-center space-x-3 ml-4">
+              <Link
+                href="/dashboard"
+                className="px-5 py-1.5 border border-gray-600 rounded-md hover:bg-gray-800 transition-colors"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => signOut()}
+                className="px-4 py-2 text-center border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                Sign out
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -450,20 +470,38 @@ export function Navbar() {
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-2">
-              <Link
-                href="/login"
-                className="px-4 py-2 text-center border border-gray-600 rounded-md hover:bg-gray-800 transition-colors"
-              >
-                Login
-              </Link>
-              <Link
-                href="/signup"
-                className="px-4 py-2 text-center border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
-              >
-                Sign up
-              </Link>
-            </div>
+            {!session && (
+              <div className="grid grid-cols-2 gap-2 pt-2">
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-center border border-gray-600 rounded-md hover:bg-gray-800 transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-4 py-2 text-center border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
+                >
+                  Sign up
+                </Link>
+              </div>
+            )}
+            {session && (
+              <div className="grid grid-cols-2 gap-2 pt-2">
+                <Link
+                  href="/dashboard"
+                  className="px-4 py-2 text-center border border-gray-600 rounded-md hover:bg-gray-800 transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={() => signOut()}
+                  className="px-4 py-2 text-center border border-gray-600 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors"
+                >
+                  Sign out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
