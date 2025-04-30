@@ -100,7 +100,7 @@ export default function StartupsPage() {
 
       {filteredStartups.length === 0 ? (
         <Card className="border border-blue-500 shadow-md">
-          <CardHeader className="bg-blue-50">
+          <CardHeader >
             <CardTitle className="text-blue-500">No Startups Found</CardTitle>
           </CardHeader>
           <CardContent>
@@ -118,7 +118,7 @@ export default function StartupsPage() {
               key={startup.id}
               className="hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden"
             >
-              <CardHeader className="bg-blue-50 border-b border-gray-200">
+              <CardHeader className="border-b border-gray-200">
                 <CardTitle className="text-black">{startup.name}</CardTitle>
                 <div className="flex flex-wrap items-center gap-2 mt-2">
                   <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-500">
