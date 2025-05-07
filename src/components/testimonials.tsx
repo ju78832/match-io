@@ -5,7 +5,7 @@ const testimonials = [
     name: "Sarah Johnson",
     role: "Founder, TechStart",
     content:
-      "AngelMatch helped us secure our seed round in half the time it took for our previous startup. The quality of investors was exceptional.",
+      "DevLaunch helped us secure our seed round in half the time it took for our previous startup. The quality of investors was exceptional.",
     avatar: "👩‍💼",
   },
   {
@@ -17,9 +17,9 @@ const testimonials = [
   },
   {
     name: "David Rodriguez",
-    role: "Angel Investor",
+    role: "DevLauch Investor",
     content:
-      "As an investor, I appreciate how AngelMatch surfaces high-quality deals that match my thesis. It saves me countless hours of filtering.",
+      "As an investor, I appreciate how DevLauch surfaces high-quality deals that match my thesis. It saves me countless hours of filtering.",
     avatar: "👨‍💼",
   },
 ];
@@ -30,14 +30,15 @@ export function Testimonials() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-[#111827] dark:text-white">
-            <span className="text-blue-500">Trusted</span> by Founders & Investors
+            <span className="text-blue-500">Trusted</span> by Founders &
+            Investors
           </h2>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg shadow hover:shadow-md transition-all duration-300"
             >
               <CardHeader className="pb-3 border-b border-gray-100 dark:border-gray-800">

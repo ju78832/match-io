@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import wtp1 from "../assets/wtp1.png";
 import wtp2 from "../assets/wtp2.png";
@@ -9,12 +8,10 @@ export default function WhereToPitch() {
     <div className="bg-white text-black min-h-screen font-sans md:w-[90vw] lg:w-[85vw] mx-auto">
       {/* Main Heading */}
       <div className="container mx-auto px-4 py-16 text-center">
-
         <h1 className="text-4xl md:text-5xl font-bold mb-10">
           How to find your investor with{" "}
-          <span className="text-blue-500">AngelMatch</span>
+          <span className="text-blue-500">DevLaunch</span>
         </h1>
-
       </div>
 
       {/* Step 1 Section */}
@@ -23,7 +20,6 @@ export default function WhereToPitch() {
           <div className="lg:w-1/3 space-y-4 px-4">
             <h2 className="text-3xl font-bold">1. SEARCH INVESTORS</h2>
             <p className="text-blue-300">
-
               Look and filter for investors according to location, industry, and
               other investment preferences.
             </p>
@@ -32,7 +28,6 @@ export default function WhereToPitch() {
             <Image
               src={wtp1}
               alt="Investor search interface"
-
               className="rounded-lg shadow-xl w-full "
             />
           </div>
@@ -44,7 +39,6 @@ export default function WhereToPitch() {
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-6">
           {/* Step 2 */}
           <div className="bg-gray-900 p-8 rounded-lg  relative min-h-[400px] lg:min-h-[500px]">
-
             <h2 className="text-3xl font-bold text-center mb-4">
               2. CREATE INVESTOR LIST
             </h2>
@@ -56,7 +50,6 @@ export default function WhereToPitch() {
               <Image
                 src={wtp2}
                 alt="Investor CRM interface"
-
                 className="rounded-lg shadow-lg"
               />
             </div>
@@ -64,7 +57,6 @@ export default function WhereToPitch() {
 
           {/* Step 3 */}
           <div className="bg-gray-900 p-8 rounded-lg relative min-h-[400px] lg:min-h-[500px]">
-
             <h2 className="text-3xl font-bold text-center mb-4">
               3. START PITCHING
             </h2>
@@ -76,7 +68,6 @@ export default function WhereToPitch() {
               <Image
                 src={wtp3}
                 alt="Email interface"
-
                 className="rounded-lg shadow-lg"
               />
             </div>
@@ -94,5 +85,4 @@ export default function WhereToPitch() {
       </div>
     </div>
   );
-
 }

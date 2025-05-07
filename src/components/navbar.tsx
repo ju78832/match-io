@@ -15,30 +15,9 @@ export function Navbar() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <div className="flex items-center">
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 32L20 20L28 28L40 16"
-                  stroke="#3B82F6"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M32 16H40V24"
-                  stroke="#3B82F6"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <img src="/image/DLlogo.png" alt="Logo" className="w-8 h-8" />
               <span className="ml-2 font-bold text-xl text-white">
-                AngelMatch
+                DevLaunch
               </span>
             </div>
           </Link>

@@ -34,18 +34,23 @@ export function Features() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-3xl text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Why Founders Love <span className="text-blue-500">AngelMatch</span>
+            Why Founders Love{" "}
+            <img
+              src="/image/DLlogo.png"
+              alt="logo"
+              className="inline-block h-14 w-14"
+            />
           </h2>
           <p className="mt-4 text-gray-600 dark:text-gray-400 text-lg">
-            We've built the most efficient way to connect with angel investors
-            who are a perfect fit for your startup.
+            We've built the most efficient way to connect with devLaunch
+            investors who are a perfect fit for your startup.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="bg-white dark:bg-[#1F2937] border border-gray-100 dark:border-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
             >
               <CardHeader className="pb-2 space-y-4">
